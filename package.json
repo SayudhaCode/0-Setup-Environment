@@ -1,0 +1,23 @@
+{
+  "name": "setup-environment",
+  "version": "1.0.0",
+  "description": "Environment Setup for Future Development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SayudhaStudio/0-Setup-Environment.git"
+  },
+  "author": "Sayudha Lukita Wibisana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SayudhaStudio/0-Setup-Environment/issues"
+  },
+  "homepage": "https://github.com/SayudhaStudio/0-Setup-Environment#readme",
+  "dependencies": {
+    "webpack": "^5.72.0",
+    "webpack-nano": "^1.1.1"
+  }
+}
