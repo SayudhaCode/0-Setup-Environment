@@ -1,28 +1,32 @@
-const { mode }	= require('webpack-nano/argv');
-const { merge }	= require('webpack-merge');
-const parts		= require('./webpack.parts');
+const { mode }  = require('webpack-nano/argv'),
+      { merge } = require('webpack-merge'),
+      parts     = require('./webpack.parts'),
+      glob      = require('glob');
 
+const cssLoaders   = [parts.tailwind()];
 const commonConfig = merge([
-	{ entry : ['./src'] },
+	{
+		entry: { style: glob.sync('./src/**/*.css') },
+	},
 	parts.page({ title: 'Demo' }),
-	parts.loadCSS()
-])
+	parts.extractCSS({ loaders: cssLoaders }),
+]);
 
-const productionConfig = merge([])
+const productionConfig = merge([]);
 
 const developmentConfig = merge([
 	{ entry: ['webpack-plugin-serve/client'] },
-	parts.devserver()
-])
+	parts.devServer(),
+]);
 
 const getConfig = (mode) => {
-	switch(mode) {
-		case "production"	:
+	switch (mode) {
+		case 'production':
 			return merge(commonConfig, productionConfig, { mode });
-		case "development"	:
+		case 'development':
 			return merge(commonConfig, developmentConfig, { mode });
-		default				:
-			throw new Error(`Trying to use unknowne ${ mode }`);
+		default:
+			throw new Error(`Trying to use unknown ${ mode }`);
 	}
-}
-module.exports = getConfig(mode);
+};
+module.exports  = getConfig(mode);
