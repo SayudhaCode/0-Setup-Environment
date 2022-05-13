@@ -1,32 +1,24 @@
 const { WebpackPluginServe }    = require('webpack-plugin-serve'),
       { MiniHtmlWebpackPlugin } = require('mini-html-webpack-plugin'),
-      MiniCSSExtractPlugin      = require('mini-css-extract-plugin');
+      MiniCSSExtractPlugin      = require('mini-css-extract-plugin'),
+      path                      = require('path'),
+      glob                      = require('glob'),
+      PurgeCSSPlugin            = require('purgecss-webpack-plugin');
 
-exports.devServer =
-	() => (
-		{
-			watch  : true,
-			plugins: [
-				new WebpackPluginServe({
-					port        : process.env.PORT || 8080,
-					static      : './dist',
-					liveReload  : true,
-					waitForBuild: true,
-				}),
-			],
-		} );
-
-exports.page = ({ title }) => ( {
+const ALL_FILES            = glob.sync(path.join(__dirname, 'src/*.js'));
+exports.eliminateUnusedCSS = () => ( {
 	plugins: [
-		new MiniHtmlWebpackPlugin({ context: title }),
+		new PurgeCSSPlugin({
+			paths     : ALL_FILES,
+			extractors: [
+				{
+					extractor : (content) =>
+						content.match(/[^<>"'1\s]*[^<>"'1\s:]/g) || [],
+					extensions: ['html'],
+				},
+			],
+		}),
 	],
-} );
-
-exports.tailwind = () => ( {
-	loader : 'postcss-loader',
-	options: {
-		postcssOptions: { plugins: [require('tailwindcss')()] },
-	},
 } );
 
 exports.extractCSS = ({ options = {}, loaders = [] } = {}) => {
@@ -50,4 +42,29 @@ exports.extractCSS = ({ options = {}, loaders = [] } = {}) => {
 		],
 	};
 };
+
+exports.tailwind = () => ( {
+	loader : 'postcss-loader',
+	options: {
+		postcssOptions: { plugins: [require('tailwindcss')()] },
+	},
+} );
+
+exports.page = ({ title }) => ( {
+	plugins: [
+		new MiniHtmlWebpackPlugin({ context: title }),
+	],
+} );
+
+exports.devServer = () => ( {
+	watch  : true,
+	plugins: [
+		new WebpackPluginServe({
+			port        : parseInt(process.env.PORT, 10) || 8080,
+			static      : './dist',
+			liveReload  : true,
+			waitForBuild: true,
+		}),
+	],
+} );
 

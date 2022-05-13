@@ -3,21 +3,20 @@ const { mode }  = require('webpack-nano/argv'),
       parts     = require('./webpack.parts'),
       glob      = require('glob');
 
-const cssLoaders   = [parts.tailwind()];
-const commonConfig = merge([
+const cssLoaders = [parts.tailwind()];
+
+const commonConfig      = merge([
 	{
 		entry: { style: glob.sync('./src/**/*.css') },
 	},
 	parts.page({ title: 'Demo' }),
 	parts.extractCSS({ loaders: cssLoaders }),
 ]);
-
-const productionConfig = merge([]);
-
 const developmentConfig = merge([
 	{ entry: ['webpack-plugin-serve/client'] },
 	parts.devServer(),
 ]);
+const productionConfig  = merge([parts.eliminateUnusedCSS()]);
 
 const getConfig = (mode) => {
 	switch (mode) {
