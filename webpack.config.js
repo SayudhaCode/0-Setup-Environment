@@ -3,7 +3,7 @@ const { mode }  = require('webpack-nano/argv'),
       parts     = require('./webpack.parts'),
       glob      = require('glob');
 
-const cssLoaders = [parts.tailwind()];
+const cssLoaders = [parts.autoPrefix(), parts.tailwind()];
 
 const commonConfig      = merge([
 	{

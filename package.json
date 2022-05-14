@@ -19,6 +19,7 @@
 	},
 	"homepage": "https://github.com/SayudhaStudio/0-Setup-Environment#readme",
 	"dependencies": {
+		"autoprefixer": "^10.4.7",
 		"css-loader": "^6.7.1",
 		"fast-sass-loader": "^2.0.1",
 		"glob": "^8.0.2",
