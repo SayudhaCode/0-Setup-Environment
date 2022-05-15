@@ -1,4 +1,3 @@
-import component from './component';
-import './main.css';
+import helloWorld from './hello-world';
 
-document.body.appendChild(component());
+helloWorld();
