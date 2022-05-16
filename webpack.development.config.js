@@ -71,7 +71,7 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			title      : 'Hello world',
-			template   : 'src/index.hbs',
+			template   : 'src/page-template.hbs',
 			description: 'Some description',
 		}),
 	],
