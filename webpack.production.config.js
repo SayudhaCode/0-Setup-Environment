@@ -4,17 +4,23 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin      = require('html-webpack-plugin');
 
 module.exports = {
-	entry  : {
-		'hello-world': './src/index.js',
+	entry       : {
+		'hello-world': './src/hello-world.js',
 		'kiwi'       : './src/kiwi.js',
 	},
-	output : {
+	output      : {
 		filename  : '[name].[contenthash].js',
 		path      : path.resolve(__dirname, './dist'),
 		publicPath: '',
 	},
-	mode   : 'production',
-	module : {
+	mode        : 'production',
+	optimization: {
+		splitChunks: {
+			chunks : 'all',
+			minSize: 1000,
+		},
+	},
+	module      : {
 		rules: [
 			{
 				test  : /\.(png|jpg)$/,
@@ -56,7 +62,7 @@ module.exports = {
 			},
 		],
 	},
-	plugins: [
+	plugins     : [
 		new MiniCssExtractPlugin({
 			filename: '[name].[contenthash].css',
 		}),
