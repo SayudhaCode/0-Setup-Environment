@@ -3,14 +3,25 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin    = require('html-webpack-plugin');
 
 module.exports = {
-	entry  : './src/index.js',
-	output : {
+	entry       : './src/index.js',
+	output      : {
 		filename: 'bundle.[contenthash].js',
 		path    : path.resolve(__dirname, '/build'),
 	},
-	mode   : 'production',
-	module : {
+	mode        : 'production',
+	optimization: {
+		splitChunks: {
+			chunks                : 'all',
+			minSize               : 2000,
+			automaticNameDelimiter: '_',
+		},
+	},
+	module      : {
 		rules: [
+			{
+				test: /\.(png|jpg)$/,
+				use : ['file-loader'],
+			},
 			{
 				test: /\.css$/,
 				use : [MiniCssExtractPlugin.loader, 'css-loader'],
@@ -30,7 +41,7 @@ module.exports = {
 			},
 		],
 	},
-	plugins: [
+	plugins     : [
 		new MiniCssExtractPlugin({
 			filename: 'style.[contenthash].css',
 		}),
