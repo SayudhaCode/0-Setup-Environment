@@ -23,23 +23,12 @@ module.exports = {
 				use : ['file-loader'],
 			},
 			{
-				test: /\.css$/,
-				use : [MiniCssExtractPlugin.loader, 'css-loader'],
-			},
-			{
-				test: /\.(scss|sass)$/,
-				use : [MiniCssExtractPlugin.loader, 'css-loader', 'style-loader'],
-			},
-			{
-				test   : /\.js$/,
-				exclude: /node_modules/,
-				use    : {
-					loader : 'babel-loader',
-					options: {
-						presets: ['@babel/env', '@babel/preset-env'],
-						plugins: ['@babel/plugin-proposal-class-properties'],
-					},
-				},
+				test: /\.scss$/,
+				use : [
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+					'style-loader'
+				],
 			},
 			{
 				test: /\.pug$/,

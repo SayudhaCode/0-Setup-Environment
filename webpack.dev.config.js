@@ -59,6 +59,6 @@ module.exports = {
 			minify     : {
 				collapseWhitespace: false,
 			},
-		}),
+		})
 	],
 };
