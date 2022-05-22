@@ -60,13 +60,5 @@ module.exports = {
 				collapseWhitespace: false,
 			},
 		}),
-		new HtmlWebpackPlugin({
-			title      : 'Style Guide',
-			description: 'Style Guide using Tailwind CSS',
-			template   : 'src/components/Templates/styleguide.pug',
-			minify     : {
-				collapseWhitespace: false,
-			},
-		}),
 	],
 };

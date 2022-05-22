@@ -27,8 +27,19 @@ module.exports = {
 				use : [MiniCssExtractPlugin.loader, 'css-loader'],
 			},
 			{
-				test: /\.scss$/,
+				test: /\.(scss|sass)$/,
 				use : [MiniCssExtractPlugin.loader, 'css-loader', 'style-loader'],
+			},
+			{
+				test   : /\.js$/,
+				exclude: /node_modules/,
+				use    : {
+					loader : 'babel-loader',
+					options: {
+						presets: ['@babel/env', '@babel/preset-env'],
+						plugins: ['@babel/plugin-proposal-class-properties'],
+					},
+				},
 			},
 			{
 				test: /\.pug$/,
@@ -49,14 +60,6 @@ module.exports = {
 			title      : 'Sayudha Project',
 			description: 'Sayudha Templating Single Page Environment Using Webpack',
 			template   : 'src/components/Templates/index.pug',
-			minify     : {
-				collapseWhitespace: false,
-			},
-		}),
-		new HtmlWebpackPlugin({
-			title      : 'Style Guide',
-			description: 'Style Guide using Tailwind CSS',
-			template   : 'src/components/Templates/styleguide.pug',
 			minify     : {
 				collapseWhitespace: false,
 			},
