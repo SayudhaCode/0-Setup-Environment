@@ -1,48 +1,43 @@
 {
-  "name"           : "setup-env",
-  "version"        : "1.0.0",
-  "description"    : "Testing Webpack Configuration Environment for Slicing Single Page",
-  "main"           : "index.js",
-  "scripts"        : {
-	"build": "webpack --config webpack.prod.config.js",
-	"dev"  : "webpack-dev-server --config webpack.dev.config.js --hot",
-	"start": "node src/server.js"
+  "name": "setup-environment",
+  "version": "1.0.0",
+  "description": "3rd time trying to make an environment for slicing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository"     : {
-	"type": "git",
-	"url" : "git+https://github.com/SayudhaStudio/0-Setup-Environment.git"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SayudhaStudio/0-Setup-Environment.git"
   },
-  "author"         : "Sayudha Lukita Wibisana",
-  "license"        : "ISC",
-  "bugs"           : {
-	"url": "https://github.com/SayudhaStudio/0-Setup-Environment/issues"
+  "author": "Sayudha Lukita Wibisana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SayudhaStudio/0-Setup-Environment/issues"
   },
-  "homepage"       : "https://github.com/SayudhaStudio/0-Setup-Environment#readme",
+  "homepage": "https://github.com/SayudhaStudio/0-Setup-Environment#readme",
   "devDependencies": {
-	"@babel/core"                            : "^7.18.0",
-	"@babel/eslint-parser"                   : "^7.17.0",
-	"@babel/plugin-proposal-class-properties": "^7.17.12",
-	"@babel/preset-env"                      : "^7.18.0",
-	"autoprefixer"                           : "^10.4.7",
-	"babel-loader"                           : "^8.2.5",
-	"clean-webpack-plugin"                   : "^4.0.0",
-	"css-loader"                             : "^6.7.1",
-	"eslint"                                 : "^8.16.0",
-	"file-loader"                            : "^6.2.0",
-	"html-webpack-plugin"                    : "^5.5.0",
-	"mini-css-extract-plugin"                : "^2.6.0",
-	"node-sass"                              : "^7.0.1",
-	"postcss"                                : "^8.4.14",
-	"postcss-loader"                         : "^7.0.0",
-	"postcss-preset-env"                     : "^7.6.0",
-	"pug"                                    : "^2.0.4",
-	"pug-loader"                             : "^2.4.0",
-	"sass"                                   : "^1.52.1",
-	"sass-loader"                            : "^13.0.0",
-	"style-loader"                           : "^3.3.1",
-	"tailwindcss"                            : "^3.0.24",
-	"webpack"                                : "^5.72.1",
-	"webpack-cli"                            : "^4.9.2",
-	"webpack-dev-server"                     : "^4.9.0"
+    "@babel/core": "^7.18.0",
+    "@babel/plugin-proposal-class-properties": "^7.17.12",
+    "@babel/preset-env": "^7.18.0",
+    "babel-loader": "^8.2.5",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "node-sass": "^7.0.1",
+    "sass-loader": "^13.0.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.5",
+    "bootstrap": "^5.1.3",
+    "express": "^4.18.1",
+    "jquery": "^3.6.0",
+    "lodash": "^4.17.21"
   }
 }

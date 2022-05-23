@@ -1,1 +1,0 @@
-import './components/Pages/index/index.scss';

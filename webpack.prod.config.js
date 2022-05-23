@@ -1,18 +1,20 @@
-const path                 = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin    = require('html-webpack-plugin');
+const path                   = require('path');
+const MiniCssExtractPlugin   = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin      = require('html-webpack-plugin');
 
 module.exports = {
 	entry       : './src/index.js',
 	output      : {
-		filename: 'bundle.[contenthash].js',
-		path    : path.resolve(__dirname, '/build'),
+		filename  : 'bundle.[contenthash].js',
+		path      : path.resolve(__dirname, '/build'),
+		publicPath: '/static/',
 	},
 	mode        : 'production',
 	optimization: {
 		splitChunks: {
 			chunks                : 'all',
-			minSize               : 2000,
+			minSize               : 3000,
 			automaticNameDelimiter: '_',
 		},
 	},
@@ -23,35 +25,24 @@ module.exports = {
 				use : ['file-loader'],
 			},
 			{
-				test: /\.scss$/,
-				use : [
-					MiniCssExtractPlugin.loader,
-					'css-loader',
-					'style-loader'
-				],
+				test: /\.css$/,
+				use : [MiniCssExtractPlugin.loader, 'css-loader'],
 			},
 			{
-				test: /\.pug$/,
-				use : {
-					loader : 'pug-loader',
+				test: /\.scss$/,
+				use : [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+			},
+			{
+				test   : /\.js$/,
+				exclude: /node_modules/,
+				use    : {
+					loader : 'babel-loader',
 					options: {
-						pretty: true,
+						presets: ['@babel/env'],
+						plugins: ['@babel/plugin-proposal-class-properties'],
 					},
 				},
 			},
 		],
 	},
-	plugins     : [
-		new MiniCssExtractPlugin({
-			filename: 'style.[contenthash].css',
-		}),
-		new HtmlWebpackPlugin({
-			title      : 'Sayudha Project',
-			description: 'Sayudha Templating Single Page Environment Using Webpack',
-			template   : 'src/components/Templates/index.pug',
-			minify     : {
-				collapseWhitespace: false,
-			},
-		}),
-	],
 };
